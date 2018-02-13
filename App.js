@@ -16,6 +16,11 @@ export default class App extends Component
         isLoaded: false
     };
 
+    async componentDidMount()
+    {
+        await AsyncStorage.removeItem('token');
+    }
+
     render()
     {
         if (!this.state.isLoaded)

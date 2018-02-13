@@ -1,10 +1,32 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, RefreshControl } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import ActionButton from 'react-native-action-button';
+import { Ionicons } from '@expo/vector-icons';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
+import Tabs from './components/Tabs';
 
 import * as actions from './actions';
-import Loader from "../../modules/Loader";
 import Colors from "../../../constants/Colors";
+
+const AddButton = () => (
+    <Button
+        icon={<Ionicons name='md-add' color={Colors.white} size={28} />}
+        onPress={() => {}}
+        buttonStyle={styles.addButton}
+        iconContainerStyle={styles.addButtonIcon}
+    />
+);
+
+const NotesView = ({ notes }) => (
+    <ScrollView>
+        {notes.map((item) => (
+            <View>
+                <Text>{item.title}</Text>
+            </View>
+        ))}
+    </ScrollView>
+);
 
 @connect(state => ({
     notes: state.notes
@@ -12,29 +34,36 @@ import Colors from "../../../constants/Colors";
 
 export default class NotesScene extends Component
 {
-    _onRefresh = async () => {
+    static navigationOptions = {
+        title: 'Заметки'
+    };
+
+    _getNotes = async () => {
         await this.props.getNotes();
     };
 
     componentDidMount = async () => {
-        await this._onRefresh();
+        await this._getNotes();
     };
 
     render()
     {
         return (
-            <ScrollView
-                refreshControl={
-                    <RefreshControl
-                        refreshing={this.props.notes.isLoading}
-                        onRefresh={this._onRefresh}
-                        tintColor={Colors.pink}
-                        colors={[Colors.pink]}
-                    />
-                }
-            >
-                { this.props.notes.items.map((item, index) => <View key={index}><Text>{item.title}</Text></View>)}
-            </ScrollView>
+            <View style={styles.container}>
+                <Tabs navigation={this.props.navigation} />
+                <ActionButton
+                    buttonColor={Colors.pink}
+                    onPress={() => { this.props.navigation.navigate('Add') }}
+                >
+                    <Ionicons name="md-add" color={Colors.white} size={24} />
+                </ActionButton>
+            </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+});

@@ -6,7 +6,7 @@ export default class Input extends Component
 {
     state = {
         isFocused: false,
-        labelPosition: new Animated.Value(26),
+        labelPosition: new Animated.Value(17),
         focusedAnim: null,
         blurredAnim: null
     };
@@ -24,7 +24,7 @@ export default class Input extends Component
         this.state.blurredAnim = Animated.timing(
             this.state.labelPosition,
             {
-                toValue: 26,
+                toValue: 17,
                 duration: 300
             }
         );
@@ -46,25 +46,24 @@ export default class Input extends Component
     {
         const labelStyles = {
             position: 'relative',
-            textAlign: 'center',
-            color: this.props.error.field === this.props.field ? Colors.red : Colors.lightPurple,
-            fontSize: 16,
+            color: this.props.error.field === this.props.field ? Colors.red : Colors.pink,
+            fontSize: 14,
             fontFamily: 'MontserratRegular',
             top: this.state.labelPosition
         };
 
         const containerStyles = {
-            borderBottomColor: this.props.error.field === this.props.field ? Colors.red : 'rgba(255, 255, 255, 0.1)',
+            position: 'relative',
+            borderBottomColor: this.props.error.field === this.props.field ? Colors.red : Colors.pink,
             borderBottomWidth: 1,
-            paddingHorizontal: 50,
-            paddingVertical: 20,
+            paddingHorizontal: 30,
+            paddingVertical: 10
         };
 
         const inputStyles = {
             fontFamily: 'MontserratMedium',
             fontSize: 18,
-            textAlign: 'center',
-            color: Colors.white,
+            color: Colors.black,
         };
 
         const errorStyles = {

@@ -13,6 +13,8 @@ export default (state = initialState, action) => {
             return { ...state, isLoading: false, items: action.payload };
         case 'GET_NOTES_ERROR':
             return { ...state, isLoading: false, error: action.payload };
+        case 'ADD_NOTE':
+            return { ...state, item: [ ...state.items, action.payload ] };
         default:
             return state;
     }

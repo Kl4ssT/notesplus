@@ -2,7 +2,9 @@ import { combineReducers } from 'redux';
 
 import {
     LoginReducer,
-    NotesReducer
+    NotesReducer,
+    AddReducer,
+    EditReducer
 } from '../scenes';
 
 import NavigationReducer from '../navigation/reducer';
@@ -10,5 +12,7 @@ import NavigationReducer from '../navigation/reducer';
 export default combineReducers({
     login: LoginReducer,
     navigation: NavigationReducer,
-    notes: NotesReducer
+    notes: NotesReducer,
+    add: AddReducer,
+    edit: EditReducer
 });

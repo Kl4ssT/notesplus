@@ -2,10 +2,10 @@ import React from 'react';
 import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import Colors from "../../constants/Colors";
 
-export default ({ onStart }) => {
+export default ({ onStart, style }) => {
     if (onStart)
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { ...style }]}>
                 <ActivityIndicator size="large" color={Colors.pink} />
             </View>
         );
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        zIndex: 10,
+        zIndex: 1000,
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

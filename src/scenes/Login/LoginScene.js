@@ -20,8 +20,11 @@ export default class LoginScreen extends Component
     };
 
     componentDidMount = async () => {
+        console.log('Login');
         await this.props.checkAuth();
-        this.props.navigation.navigate('Notes');
+
+        if (this.props.login.isLogged)
+            this.props.navigation.navigate('Notes');
     };
 
     signIn = async () => {

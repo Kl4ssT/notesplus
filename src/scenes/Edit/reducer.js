@@ -1,7 +1,7 @@
 const initialState = {
-    isLogged: false,
     isLoading: false,
-    token: null,
+    isDeleted: false,
+    note: {},
     error: {
         message: null,
         field: null
@@ -11,18 +11,19 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type)
     {
-        case 'LOGIN':
+        case 'EDIT_LOADING':
             return { ...state, isLoading: true, error: initialState.error };
-        case 'NOT_LOGIN':
+        case 'NOTE_LOADED':
             return { ...state, isLoading: false };
-        case 'LOGIN_SUCCESS':
-            return { ...state, isLoading: false, isLogged: true, token: action.payload };
-        case 'LOGIN_ERROR':
+        case 'EDIT_SUCCESS':
+            return { ...state, isLoading: false, isEdited: true };
+        case 'DELETE_SUCCESS':
+            return { ...state, isDeleted: true };
+        case 'EDIT_ERROR':
             return {
                 ...state,
                 isLoading: false,
-                isLogged: false,
-                token: null,
+                isEdited: false,
                 error: {
                     message: action.payload.message,
                     field: action.payload.field

@@ -15,6 +15,10 @@ export const checkAuth = () => {
                 type: 'LOGIN_SUCCESS',
                 payload: token
             });
+        else
+            dispatch({
+                type: 'NOT_LOGIN'
+            })
     }
 };
 

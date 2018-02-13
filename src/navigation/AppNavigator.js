@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { AsyncStorage } from 'react-native';
 import { addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
@@ -15,6 +16,11 @@ import Navigator from './Navigator';
 
 export default class AppNavigator extends Component
 {
+
+    componentDidMount() {
+        console.log('AppNavigator');
+    };
+
     render()
     {
         const addListener = createReduxBoundAddListener("root");
