@@ -3,8 +3,6 @@ import { Provider } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import { AppLoading, Asset, Font } from 'expo';
 
-import { AsyncStorage } from 'react-native';
-
 import store from './src/redux/store';
 
 import Root from './src/Root';
@@ -15,11 +13,6 @@ export default class App extends Component
     state = {
         isLoaded: false
     };
-
-    async componentDidMount()
-    {
-        await AsyncStorage.removeItem('token');
-    }
 
     render()
     {
